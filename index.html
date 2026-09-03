@@ -1,54 +1,863 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ABDO STORE 🎧</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BOUTIQUE MOHAMED | أناقة الرجل</title>
+
+    <meta name="description"
+          content="BOUTIQUE MOHAMED - أزياء رجالية وشبابية بتصميم عصري وفخم">
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Tahoma, sans-serif;
+            background: #f8f6f1;
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =========================
+           BACKGROUND
+        ========================== */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    rgba(255,255,255,0.82),
+                    rgba(248,246,241,0.92)
+                ),
+                url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(212,175,55,0.12),
+                    transparent 35%
+                );
+
+            z-index: -1;
+            pointer-events: none;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+
+            padding: 18px 7%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(255,255,255,0.80);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #b08a28;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: bold;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+
+            bottom: -7px;
+            right: 0;
+
+            width: 0;
+            height: 2px;
+
+            background: #c5a44d;
+
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #b08a28;
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 130px 20px 80px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+
+            background: rgba(255,255,255,0.72);
+
+            backdrop-filter: blur(10px);
+
+            padding: 55px 40px;
+
+            border-radius: 30px;
+
+            border: 1px solid rgba(255,255,255,0.9);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.10);
+        }
+
+        .small-title {
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: #a4842d;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 85px);
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #b08a28;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        .hero-button {
+            display: inline-block;
+
+            padding: 15px 35px;
+
+            border-radius: 50px;
+
+            background: #222;
+            color: white;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .hero-button:hover {
+            transform: translateY(-4px);
+            background: #b08a28;
+
+            box-shadow:
+                0 0 25px rgba(212,175,55,0.55);
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================== */
+
+        section {
+            padding: 90px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+
+        /* =========================
+           CATEGORIES
+        ========================== */
+
+        .categories {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+        .category {
+            min-height: 330px;
+
+            border-radius: 25px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            background: white;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.08);
+
+            transition: 0.4s;
+        }
+
+        .category:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 25px 55px rgba(0,0,0,0.14);
+        }
+
+        .category img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            position: absolute;
+            inset: 0;
+
+            transition: 0.5s;
+        }
+
+        .category:hover img {
+            transform: scale(1.07);
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: flex-end;
+
+            padding: 30px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    transparent 30%,
+                    rgba(0,0,0,0.75)
+                );
+        }
+
+        .category-overlay h3 {
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+
+        .category-overlay p {
+            opacity: 0.85;
+        }
+
+
+        /* =========================
+           FEATURES
+        ========================== */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+        .feature {
+            background: rgba(255,255,255,0.78);
+
+            backdrop-filter: blur(10px);
+
+            border-radius: 22px;
+
+            padding: 35px 20px;
+
+            text-align: center;
+
+            border: 1px solid rgba(0,0,0,0.05);
+
+            transition: 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-6px);
+        }
+
+        .icon {
+            width: 65px;
+            height: 65px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f5edda;
+
+            color: #a4842d;
+
+            font-size: 27px;
+
+            transition: 0.3s;
+        }
+
+        /*
+           ✨ لمعان الأيقونة عند الضغط
+        */
+
+        .icon:active {
+            transform: scale(0.9);
+
+            box-shadow:
+                0 0 10px #d4af37,
+                0 0 25px #d4af37,
+                0 0 45px rgba(212,175,55,0.5);
+        }
+
+        .feature h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            color: #777;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           COLLECTION
+        ========================== */
+
+        .collection {
+            max-width: 1100px;
+
+            margin: auto;
+
+            background: rgba(255,255,255,0.78);
+
+            backdrop-filter: blur(12px);
+
+            padding: 60px 30px;
+
+            border-radius: 30px;
+
+            text-align: center;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .collection h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .collection h2 span {
+            color: #b08a28;
+        }
+
+        .collection p {
+            color: #666;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            padding: 40px 20px;
+
+            text-align: center;
+
+            background: rgba(255,255,255,0.85);
+
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        footer .footer-logo {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        footer .footer-logo span {
+            color: #b08a28;
+        }
+
+        footer p {
+            color: #777;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 800px) {
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content {
+                padding: 45px 20px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .category {
+                height: 300px;
+            }
+
+            .features {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            section {
+                padding: 65px 20px;
+            }
+
+        }
+
+        @media (max-width: 450px) {
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-<header>
-  <h1>🎧 ABDO STORE</h1>
-  <button id="cartBtn">🛒 السلة (<span id="cartCount">0</span>)</button>
-</header>
 
-<section class="hero">
-  <h2>سماعاتك المفضلة هنا 🔥</h2>
-  <p>جودة • أناقة • سعر مناسب</p>
-</section>
+    <!-- =========================
+         NAVBAR
+    ========================== -->
 
-<section class="products">
+    <nav>
 
-  <div class="product">
-    <img src="https://via.placeholder.com/300" alt="P9 Pro Max">
-    <h3>P9 Pro Max</h3>
-    <p class="price">1800 دج</p>
-    <button onclick="addToCart('P9 Pro Max', 1800)">
-      أضف للسلة
-    </button>
-  </div>
+        <div class="logo">
+            BOUTIQUE <span>MOHAMED</span>
+        </div>
 
-  <div class="product">
-    <img src="https://via.placeholder.com/300" alt="AirPods">
-    <h3>AirPods</h3>
-    <p class="price">1500 دج</p>
-    <button onclick="addToCart('AirPods', 1500)">
-      أضف للسلة
-    </button>
-  </div>
+        <ul class="nav-links">
 
-</section>
+            <li>
+                <a href="#home">الرئيسية</a>
+            </li>
 
-<div id="cart" class="cart">
-  <button onclick="closeCart()">✕</button>
-  <h2>🛒 سلة المشتريات</h2>
-  <div id="cartItems"></div>
-  <h3>المجموع: <span id="total">0</span> دج</h3>
-</div>
+            <li>
+                <a href="#categories">المجموعات</a>
+            </li>
 
-<script src="script.js"></script>
+            <li>
+                <a href="#about">من نحن</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                MEN'S FASHION
+            </div>
+
+            <h1>
+                BOUTIQUE
+                <span>MOHAMED</span>
+            </h1>
+
+            <p>
+                أناقة الرجل تبدأ من التفاصيل 👔
+            </p>
+
+            <a href="#categories" class="hero-button">
+                اكتشف مجموعتنا
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================== -->
+
+    <section id="categories">
+
+        <div class="section-title">
+
+            <h2>
+                مجموعتنا
+            </h2>
+
+            <p>
+                اختيارات عصرية تناسب ذوقك
+            </p>
+
+        </div>
+
+
+        <div class="categories">
+
+
+            <!-- ملابس -->
+
+            <div class="category">
+
+                <img
+                    src="https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?auto=format&fit=crop&w=1000&q=85"
+                    alt="ملابس رجالية"
+                >
+
+                <div class="category-overlay">
+
+                    <h3>
+                        ملابس رجالية
+                    </h3>
+
+                    <p>
+                        أناقة كلاسيكية وعصرية
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- أحذية -->
+
+            <div class="category">
+
+                <img
+                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=85"
+                    alt="أحذية"
+                >
+
+                <div class="category-overlay">
+
+                    <h3>
+                        أحذية
+                    </h3>
+
+                    <p>
+                        ستايل يكمل إطلالتك
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ستايل -->
+
+            <div class="category">
+
+                <img
+                    src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=1000&q=85"
+                    alt="ستايل شبابي"
+                >
+
+                <div class="category-overlay">
+
+                    <h3>
+                        ستايل شبابي
+                    </h3>
+
+                    <p>
+                        موديلات تناسب كل الأذواق
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+
+    <section id="about">
+
+        <div class="section-title">
+
+            <h2>
+                لماذا نحن؟
+            </h2>
+
+            <p>
+                لأن الأناقة تبدأ من الاختيار الصحيح
+            </p>
+
+        </div>
+
+
+        <div class="features">
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    ✦
+                </div>
+
+                <h3>
+                    موديلات عصرية
+                </h3>
+
+                <p>
+                    تصاميم تناسب الموضة الحالية
+                </p>
+
+            </div>
+
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    ◈
+                </div>
+
+                <h3>
+                    جودة مميزة
+                </h3>
+
+                <p>
+                    نهتم بالتفاصيل وجودة المنتجات
+                </p>
+
+            </div>
+
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    ◆
+                </div>
+
+                <h3>
+                    أسعار مناسبة
+                </h3>
+
+                <p>
+                    أناقة بأسعار تناسب الجميع
+                </p>
+
+            </div>
+
+
+
+            <div class="feature">
+
+                <div class="icon">
+                    ★
+                </div>
+
+                <h3>
+                    اختيار متنوع
+                </h3>
+
+                <p>
+                    ملابس وأحذية لمختلف الأذواق
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         COLLECTION
+    ========================== -->
+
+    <section>
+
+        <div class="collection">
+
+            <h2>
+                <span>YOUR STYLE.</span>
+                YOUR IDENTITY.
+            </h2>
+
+            <p>
+                في BOUTIQUE MOHAMED نؤمن أن الملابس ليست مجرد
+                قطعة ترتديها، بل هي جزء من شخصيتك.
+                اختر إطلالتك، واجعل حضورك يتحدث عنك.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+            BOUTIQUE <span>MOHAMED</span>
+        </div>
+
+        <p>
+            © 2026 BOUTIQUE MOHAMED — جميع الحقوق محفوظة
+        </p>
+
+    </footer>
+
 
 </body>
 </html>
+
+
